@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>I love Chatchawit</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    ตัวอักษรในภาษาไทย
+</header>
+
+<div class="container">
+    <nav>
+        <ul>
+            <li onclick="showContent('a')">ก. ไก่</li>
+            <li onclick="showContent('b')">ข. ไข่</li>
+            <li onclick="showContent('c')">ค. ควาย</li>
+        </ul>
+    </nav>
+
+    <main>
+        <h3 id="title">ก. ไก่</h3>
+        <p id="content">
+            กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก
+            กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก
+            กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก
+        </p>
+    </main>
+</div>
+
+<footer>
+    รหัสนิสิต 6634475423 นายสุภเดช อนุพันธ์
+</footer>
+
+<script>
+function showContent(type) {
+    const title = document.getElementById("title");
+    const content = document.getElementById("content");
+
+    if (type === 'a') {
+        title.textContent = "ก. ไก่";
+        content.innerHTML = `
+            กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก
+            กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก
+            กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก กกก
+        `;
+    }
+
+    if (type === 'b') {
+        title.textContent = "ข. ไข่";
+        content.innerHTML = `
+            ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข
+            ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข
+            ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข ขขข
+        `;
+    }
+
+    if (type === 'c') {
+        title.textContent = "ค. ควาย";
+        content.innerHTML = `
+            คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค
+            คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค
+            คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค คคค
+        `;
+    }
+}
+</script>
+
+</body>
+</html>
