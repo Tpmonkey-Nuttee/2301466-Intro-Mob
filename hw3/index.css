@@ -1,7 +1,29 @@
 .btn {
+    margin-left: 18vh;
+    margin-top: 3.5vh;
     cursor: pointer;
     border-radius: 6px;
     transition: transform 0.1s, opcaity 0.1s;
+}
+
+img {
+    width: 5vh;
+    height: 5vh;
+}
+
+.header_of_all{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+body {
+    font-size: 4vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Noto Sans Thai';
 }
 
 .btn:active {
@@ -10,7 +32,7 @@
 }
 
 * {
-    /* border: 1px solid red; */
+   outline : 1px solid red;
 }
 
 p {
@@ -27,13 +49,11 @@ p {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-    /* border: 1px solid red; */
 }
 
 .input-row {
     margin-top: 0px;
     display: flex;
-    align-items: center;
     flex-direction: row;
     gap: 8px;
 }
@@ -51,5 +71,22 @@ input[type="number"] {
 }
 
 input[type="number"] {
-    height: 20px;
+    height: 5vh;
+    font-size: 4vh
+}
+
+button {
+    cursor: pointer;
+    left: 80%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

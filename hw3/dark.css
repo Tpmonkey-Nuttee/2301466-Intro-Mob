@@ -1,4 +1,23 @@
+.btn {
+    margin-left: 18vh;
+    margin-top: 3.5vh;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: transform 0.1s, opcaity 0.1s;
+}
+
+img {
+    width: 5vh;
+    height: 5vh;
+}
+
 body {
+    font-family: 'Noto Sans Thai';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Noto Sans Thai';
     background: #1b1b1b;
     color: #eee;
 }
@@ -14,9 +33,17 @@ input {
 }
 
 button {
-    height: 30px;
-    border: 1px solid #555;
     background: #333;
     color: #eee;
-    cursor: pointer;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

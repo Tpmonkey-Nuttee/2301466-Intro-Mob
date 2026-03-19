@@ -3,6 +3,7 @@
     <head>
         <title>Tax Cal</title>
         <!-- Here -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="index.css">
         
         <script>
@@ -120,38 +121,58 @@
                 }
             }
 
+            
+            function updateFooter() {
+                fetch("https://learningportal.ocsc.go.th/learningspaceapi/localdatetime")
+                    .then(response => {
+                        if (response.ok) return response.json()
+                        throw new Error("API Failed");
+                    }).then(
+                        (data) => {
+                        document.getElementById("footer").textContent = data["datetime"];
+                        }, (e) => {
+                        document.getElementById("footer").textContent = "No Internet Connection";
+                        }
+                    )
+                setTimeout(updateFooter, 1000);
+            }
+            updateFooter();
         </script>
     </head>
     <body>
-        <p>รายได้ (บาท)</p>
+        <button type="button" onclick="toggleDarkMode()" style="position: fixed; top:16px; right:16px;">
+            Toggle Dark Mode
+        </button>
 
-        <div class="input-row">
-            <input type="number" oninput="onInput()" id="i1">
-            <button type="button" class="btn" onclick="add()" style="border: none; padding: 0; background: none;">
-                <img src="./plus.png" alt="Add income source" style="width:32px; height: 32px;">
-            </button>
-            <button type="button" class="btn" onclick="remove()" style="border: none; padding: 0; background: none;">
-                <img src="./minus-button.png" alt="Remove income source" style="width:32px; height: 32px;">
-            </button>
-        </div>
 
         <div class="input-col">
+            <div class="header_of_all">
+                <p>รายได้ (บาท)</p>
+            
+                <div class="input-row">
+                <button type="button" class="btn" onclick="add()" style="border: none; padding: 0; background: none;">
+                    <img src="./plus.png" alt="Add income source">
+                </button>
+                <button type="button" class="btn" onclick="remove()" style="border: none; padding: 0; background: none; margin-left: 0.5vh;">
+                    <img src="./minus-button.png" alt="Remove income source">
+                </button>
+                </div>
+            </div>
+            <input type="number" oninput="onInput()" id="i1">
             <input type="number" oninput="onInput()" id="i2" hidden>
             <input type="number" oninput="onInput()" id="i3" hidden>
-
+            
             <p>รายได้รวม (บาท)</p>
             <input type="number" readonly id="sum" class="output">
             <p>อัตราภาษี (%)</p>
             <input type="number" readonly id="taxPer" class="output">
-            <p>ภาษีที่ต้องจ่าย (%)</p>
+            <p>ภาษีที่ต้องจ่าย (บาท)</p>
             <input type="number" readonly id="tax" class="output">
-    
-            <button type="button" onclick="toggleDarkMode()" style="margin-top: 64px">
-                Toggle Dark Mode
-            </button>
         </div>
-        
-        
-        
+
+        <footer id="footer">
+            Fetching time...
+        </footer>
+
     </body>
 </html>
