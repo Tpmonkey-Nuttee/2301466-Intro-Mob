@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tax Cal</title>
+        <!-- Here -->
+        <link rel="stylesheet" href="index.css">
+        
+        <script>
+            let sourceCount = 1;
+            let income1 = 0;
+            let income2 = 0;
+            let income3 = 0;
+            let input1, input2, input3, out1;
+
+            document.addEventListener("DOMContentLoaded", () => {
+                input1 = document.getElementById("i1")
+                input2 = document.getElementById("i2");
+                input3 = document.getElementById("i3");
+                out1 = document.getElementById("sum");
+                out2 = document.getElementById("taxPer");
+                out3 = document.getElementById("tax");
+            })
+            
+            function add() {
+                sourceCount++;
+                if (sourceCount > 3) {sourceCount = 3;}
+                updateSource();
+                onInput();
+            }
+
+            function remove() {
+                sourceCount--;
+                if (sourceCount < 1) {sourceCount = 1;}
+                updateSource();
+                onInput();
+            }
+
+            function updateSource() {
+                console.log(sourceCount);
+                if (sourceCount == 1) {
+                    input2.hidden = true;
+                    input3.hidden = true;
+                }
+                if (sourceCount == 2) {
+                    input2.hidden = false;
+                    input3.hidden = true;
+                } else if (sourceCount == 3) {
+                    input2.hidden = false;
+                    input3.hidden = false;
+                }
+            }
+
+            function getPercent(amount) {
+                if (amount >= 5000001) {
+                    return 0.35;
+                } else if (amount >= 2000001) {
+                    return 0.3;
+                } else if (amount >= 1000001) {
+                    return 0.25;
+                } else if (amount >= 750001) {
+                    return 0.20;
+                } else if (amount >= 500001) {
+                    return 0.15;
+                } else if (amount >= 300001) {
+                    return 0.1;
+                } else if (amount >= 150001) {
+                    return 0.05;
+                }
+                return 0;
+            }
+            function calculateTax(income) {
+                const brackets = [
+                    { min: 0,        max: 150000,   rate: 0.00 },
+                    { min: 150000,   max: 300000,   rate: 0.05 },
+                    { min: 300000,   max: 500000,   rate: 0.10 },
+                    { min: 500000,   max: 750000,   rate: 0.15 },
+                    { min: 750000,   max: 1000000,  rate: 0.20 },
+                    { min: 1000000,  max: 2000000,  rate: 0.25 },
+                    { min: 2000000,  max: 5000000,  rate: 0.30 },
+                    { min: 5000000,  max: Infinity, rate: 0.35 },
+                ];
+
+                let tax = 0;
+
+                for (const bracket of brackets) {
+                    if (income <= bracket.min) break;
+                    const taxable = Math.min(income, bracket.max) - bracket.min;
+                    tax += taxable * bracket.rate;
+                }
+
+                return tax.toFixed(2);
+            }
+
+            function onInput() {
+                let sum = parseFloat(input1.value) || 0;
+                if (sourceCount > 1) {
+                    sum += parseFloat(input2.value) || 0;
+                } 
+                if (sourceCount > 2) {
+                    sum += parseFloat(input3.value) || 0;
+                }
+                // let str = sum.toLocaleString()
+                out1.value = sum;
+                taxPercent = getPercent(sum);
+                out2.value = taxPercent * 100;
+                out3.value = calculateTax(sum);
+            }
+
+            function toggleDarkMode() {
+                const existing = document.getElementById("dark-css");
+                
+                if (existing) {
+                    existing.remove(); // unload
+                } else {
+                    const link = document.createElement("link");
+                    link.id = "dark-css";
+                    link.rel = "stylesheet";
+                    link.href = "dark.css";
+                    document.head.appendChild(link); // load
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <p>รายได้ (บาท)</p>
+
+        <div class="input-row">
+            <input type="number" oninput="onInput()" id="i1">
+            <button type="button" class="btn" onclick="add()" style="border: none; padding: 0; background: none;">
+                <img src="./plus.png" alt="Add income source" style="width:32px; height: 32px;">
+            </button>
+            <button type="button" class="btn" onclick="remove()" style="border: none; padding: 0; background: none;">
+                <img src="./minus-button.png" alt="Remove income source" style="width:32px; height: 32px;">
+            </button>
+        </div>
+
+        <div class="input-col">
+            <input type="number" oninput="onInput()" id="i2" hidden>
+            <input type="number" oninput="onInput()" id="i3" hidden>
+
+            <p>รายได้รวม (บาท)</p>
+            <input type="number" readonly id="sum" class="output">
+            <p>อัตราภาษี (%)</p>
+            <input type="number" readonly id="taxPer" class="output">
+            <p>ภาษีที่ต้องจ่าย (%)</p>
+            <input type="number" readonly id="tax" class="output">
+    
+            <button type="button" onclick="toggleDarkMode()" style="margin-top: 64px">
+                Toggle Dark Mode
+            </button>
+        </div>
+        
+        
+        
+    </body>
+</html>

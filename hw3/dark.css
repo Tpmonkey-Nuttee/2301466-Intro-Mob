@@ -1,0 +1,15 @@
+body.dark {
+    background: #111;
+    color: #eee;
+}
+
+body.dark input,
+body.dark button {
+    background: #1b1b1b;
+    color: #eee;
+    border-color: #555;
+}
+
+input[type="text"] {
+    height: 20px;
+}
